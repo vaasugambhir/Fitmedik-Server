@@ -7,18 +7,24 @@ const UserSchema = new Schema({
     lowercase: true,
   },
 
-  password: {
-    type: String,
-    required: true,
-  },
+  // // password: {
+  // //   type: String,
+  // //   required: true,
+  // // },
 
-  name: {
+  // // name: {
+  // //   type: String,
+  // //   required: true,
+  // //   lowercase: true,
+  // // },
+
+  profession: {
     type: String,
     required: true,
     lowercase: true,
   },
 
-  ageGroup: {
+  age: {
     type: Number,
     required: true,
   },
@@ -29,40 +35,65 @@ const UserSchema = new Schema({
     lowercase: true,
   },
 
-  Ethnicity: {
+  ethnicity: {
     type: String,
     required: true,
     lowercase: true,
   },
 
-  Organization: {
+  organization: {
     type: Schema.Types.ObjectId,
+    ref: "organization",
     required: true,
   },
 
-  sleep_schedule: {
-    type: String,
+  department: {
+    type: Schema.Types.ObjectId,
+    ref: "department",
     required: true,
-    lowercase: true,
   },
 
-  dailyStepCount: {
-    type: String,
-    required: true,
-    lowercase: true,
+  cvd: {
+    type: Number,
   },
 
-  SleepHours: {
-    type: String,
-    required: true,
-    lowercase: true,
+  sleepQuality: {
+    type: Number,
   },
 
-  WorkingHours: {
-    type: String,
-    required: true,
-    lowercase: true,
+  stress: {
+    type: Number,
   },
+
+  burnout: [
+    {
+      type: Number,
+    },
+  ],
+
+  // sleep_schedule: {
+  //   type: String,
+  //   required: true,
+  //   lowercase: true,
+  // },
+
+  // dailyStepCount: {
+  //   type: String,
+  //   required: true,
+  //   lowercase: true,
+  // },
+
+  // SleepHours: {
+  //   type: String,
+  //   required: true,
+  //   lowercase: true,
+  // },
+
+  // WorkingHours: {
+  //   type: String,
+  //   required: true,
+  //   lowercase: true,
+  // },
 });
 
 const User = model("User", UserSchema);

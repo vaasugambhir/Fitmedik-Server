@@ -7,6 +7,6 @@ import {
 const router = Router();
 
 router.post("/create_organization", createOrganization);
-router.get("/get_organization", getOrganization);
+router.post("/get_organization", getOrganization);
 
 export default router;

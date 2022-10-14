@@ -4,9 +4,11 @@ export const createDepartment = async (req, res) => {
   try {
     //* missing check if the department exists already.
 
-    const department = Department.create(req.body);
+    const department = await Department.create(req.body);
 
-    return res.status(200).json({ message: "Department created Successfully" });
+    return res
+      .status(200)
+      .json({ message: "Department created Successfully", department });
   } catch (error) {
     console.log(error.message);
     return res.status(200).json({ message: "Internal Server Error" });

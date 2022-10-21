@@ -8,11 +8,6 @@ const DepartmentSchema = new Schema(
       lowercase: true,
     },
 
-    employeeSize: {
-      type: Number,
-      required: true,
-    },
-
     parentOrganization: {
       type: Schema.Types.ObjectId,
       ref: "organization",
@@ -25,7 +20,6 @@ const DepartmentSchema = new Schema(
         ref: "user",
       },
     ],
-    
   },
   {
     timestamps: true,

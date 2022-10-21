@@ -1,100 +1,120 @@
 import { Schema, model } from "mongoose";
 
-const UserSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
-    lowercase: true,
-  },
+const UserSchema = new Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      lowercase: true,
+    },
 
-  // // password: {
-  // //   type: String,
-  // //   required: true,
-  // // },
+    name: {
+      type: String,
+      required: true,
+      lowercase: true,
+    },
 
-  // // name: {
-  // //   type: String,
-  // //   required: true,
-  // //   lowercase: true,
-  // // },
+    password: {
+      type: String,
+      required: true,
+    },
 
-  profession: {
-    type: String,
-    required: true,
-    lowercase: true,
-  },
+    dob: {
+      type: String,
+      required: true,
+    },
 
-  age: {
-    type: Number,
-    required: true,
-  },
+    gender: {
+      type: String,
+      required: true,
+      enum: ["male", "female", "transgender", "non-binary", "other"],
+    },
 
-  gender: {
-    type: String,
-    required: true,
-    lowercase: true,
-  },
+    ethnicity: {
+      type: String,
+      required: true,
+      enum: ["american native", "asian", "white", "coloured", "other"],
+    },
 
-  ethnicity: {
-    type: String,
-    required: true,
-    lowercase: true,
-  },
+    parentOrganization: {
+      type: Schema.Types.ObjectId,
+      ref: "organization",
+      required: true,
+    },
 
-  organization: {
-    type: Schema.Types.ObjectId,
-    ref: "organization",
-    required: true,
-  },
+    profession: {
+      type: String,
+      required: true,
+      enum: ["nurse", "student", "staff", "it", "doctor"],
+    },
 
-  department: {
-    type: Schema.Types.ObjectId,
-    ref: "department",
-    required: true,
-  },
+    salary: {
+      type: Number,
+      required: true,
+    },
 
-  cvd: {
-    type: Number,
-  },
+    department: {
+      type: Schema.Types.ObjectId,
+      ref: "department",
+      required: true,
+    },
 
-  sleepQuality: {
-    type: Number,
-  },
+    weight: {
+      type: Number,
+      required: true,
+    },
 
-  stress: {
-    type: Number,
-  },
+    heightInCms: {
+      type: Number,
+      required: true,
+    },
 
-  burnout: [
-    {
+    sleepSchedule: {
+      start: {
+        type: String,
+      },
+      end: {
+        type: String,
+      },
+    },
+
+    interaction: {
+      workingAlone: {
+        type: Number,
+      },
+      workingWithColleagues: {
+        type: Number,
+      },
+    },
+
+    dailyStepCount: {
       type: Number,
     },
-  ],
 
-  // sleep_schedule: {
-  //   type: String,
-  //   required: true,
-  //   lowercase: true,
-  // },
+    sleepHours: {
+      type: Number,
+    },
 
-  // dailyStepCount: {
-  //   type: String,
-  //   required: true,
-  //   lowercase: true,
-  // },
+    workingHours: {
+      type: Number,
+    },
 
-  // SleepHours: {
-  //   type: String,
-  //   required: true,
-  //   lowercase: true,
-  // },
+    mood: {
+      moodType: {
+        type: String,
+      },
+      percentage: {
+        type: Number,
+      },
+    },
 
-  // WorkingHours: {
-  //   type: String,
-  //   required: true,
-  //   lowercase: true,
-  // },
-});
+    burnout: [Number],
+  },
+
+  {
+    timestamps: true,
+  }
+);
 
 const User = model("User", UserSchema);
 export default User;

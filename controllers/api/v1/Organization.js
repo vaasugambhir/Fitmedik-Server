@@ -23,18 +23,58 @@ export const getOrganization = async (req, res) => {
       .lean()
       .populate({
         path: "departments",
-        select: "name users",
         model: Department,
         populate: {
           path: "users",
-          select: "email burnout",
           model: User,
+          options: { lean: true },
         },
       })
       .populate({
         path: "users",
         model: User,
+        options: { lean: true },
       });
+
+    organization.users = organization.users.map((user) => {
+      const dob = user.dob.split("/");
+      const today = new Date();
+      let age = 0;
+
+      age += today.getFullYear() - parseInt(dob[2]);
+
+      if (
+        today.getMonth() - parseInt(dob[1]) !== 0 &&
+        today.getDate() - parseInt(dob[0]) !== 0
+      )
+        age--;
+
+      user.age = age;
+
+      return user;
+    });
+
+    organization.departments.map((department) => {
+      department.users = department.users.map((user) => {
+        const dob = user.dob.split("/");
+        const today = new Date();
+        let age = 0;
+
+        age += today.getFullYear() - parseInt(dob[2]);
+
+        if (
+          today.getMonth() - parseInt(dob[1]) !== 0 &&
+          today.getDate() - parseInt(dob[0]) !== 0
+        )
+          age--;
+
+        user.age = age;
+
+        return user;
+      });
+
+      return department;
+    });
 
     let response;
 

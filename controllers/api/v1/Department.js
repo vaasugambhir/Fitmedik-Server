@@ -1,10 +1,17 @@
 import Department from "../../../models/Department.js";
+import Organization from "../../../models/Organization.js";
 
 export const createDepartment = async (req, res) => {
   try {
     //* missing check if the department exists already.
 
     const department = await Department.create(req.body);
+    const organization = await Organization.findById(
+      req.body.parentOrganization
+    );
+
+    organization.departments.push(department);
+    await organization.save();
 
     return res
       .status(200)

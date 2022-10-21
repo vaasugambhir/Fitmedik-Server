@@ -14,12 +14,6 @@ const OrganizationSchema = new Schema(
       lowercase: true,
     },
 
-    employeeSize: {
-      type: Number,
-      required: true,
-      min: 5,
-    },
-
     typeOfHospital: {
       type: String,
       required: true,
@@ -32,7 +26,7 @@ const OrganizationSchema = new Schema(
         ref: "department",
       },
     ],
-    
+
     users: [
       {
         type: Schema.Types.ObjectId,

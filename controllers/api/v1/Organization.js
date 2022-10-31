@@ -109,3 +109,24 @@ export const getOrganization = async (req, res) => {
     return res.status(200).json({ message: "Internal Server Error" });
   }
 };
+
+export const createAction = async (req, res) => {
+  try {
+    const organization = await Organization.findById(req.body._id);
+
+    if (!organization)
+      return res
+        .status(200)
+        .json({ message: "no such organization exists", organization });
+
+    organization.actions.push(req.body.action);
+    await organization.save();
+
+    return res
+      .status(200)
+      .json({ message: "action created successfully", organization });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(200).json({ message: "Internal Server Error" });
+  }
+};

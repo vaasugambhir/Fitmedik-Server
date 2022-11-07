@@ -36,35 +36,8 @@ const OrganizationSchema = new Schema(
 
     actions: [
       {
-        name: { type: String, required: true, lowercase: true },
-        description: { type: String, required: true },
-        view: {
-          type: String,
-          enum: ["organization", "department"],
-          required: true,
-        },
-        actionType: {
-          type: String,
-          enum: [
-            "average burnout trend",
-            "work life balance",
-            "physical fatigue",
-            "mood",
-            "sleep quality",
-            "team support",
-            "high risk profession",
-            "gender",
-            "ethnicity",
-            "age groups",
-          ],
-          required: true,
-        },
-
-        isCompleted: { type: Boolean, required: true, default: false },
-        duration: {
-          start: { type: String, required: true },
-          end: { type: String, required: true },
-        },
+        type: Schema.Types.ObjectId,
+        ref: "action",
       },
     ],
   },

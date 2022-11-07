@@ -69,44 +69,56 @@ const UserSchema = new Schema(
       required: true,
     },
 
-    sleepSchedule: {
-      start: {
-        type: String,
+    sleepSchedule: [
+      {
+        start: {
+          type: String,
+        },
+        end: {
+          type: String,
+        },
       },
-      end: {
-        type: String,
-      },
-    },
+    ],
 
-    interaction: {
-      workingAlone: {
+    interaction: [
+      {
+        workingAlone: {
+          type: Number,
+        },
+        workingWithColleagues: {
+          type: Number,
+        },
+      },
+    ],
+
+    dailyStepCount: [
+      {
         type: Number,
       },
-      workingWithColleagues: {
+    ],
+
+    sleepHours: [
+      {
         type: Number,
       },
-    },
+    ],
 
-    dailyStepCount: {
-      type: Number,
-    },
-
-    sleepHours: {
-      type: Number,
-    },
-
-    workingHours: {
-      type: Number,
-    },
-
-    mood: {
-      moodType: {
-        type: String,
-      },
-      percentage: {
+    workingHours: [
+      {
         type: Number,
       },
-    },
+    ],
+
+    mood: [
+      {
+        moodType: {
+          type: String,
+        },
+        percentage: {
+          type: Number,
+        },
+      },
+    ],
 
     burnout: [Number],
   },

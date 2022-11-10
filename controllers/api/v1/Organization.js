@@ -58,8 +58,6 @@ const updateActionStatus = async (organizationId) => {
 
 export const getOrganization = async (req, res) => {
   try {
-    console.log("reached", req.body.organizationId);
-
     updateActionStatus(req.body.organizationId);
 
     const organization = await Organization.findById(req.body.organizationId)

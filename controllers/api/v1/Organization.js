@@ -58,6 +58,8 @@ const updateActionStatus = async (organizationId) => {
 
 export const getOrganization = async (req, res) => {
   try {
+    console.log("reached", req.body.organizationId);
+
     updateActionStatus(req.body.organizationId);
 
     const organization = await Organization.findById(req.body.organizationId)
@@ -277,13 +279,11 @@ export const destroyAction = async (req, res) => {
         model: Action,
         options: { lean: true },
       });
-    
-    return res
-      .status(200)
-      .json({
-        message: "Action Deleted Successfully Error",
-        organization: newOrganization,
-      });
+
+    return res.status(200).json({
+      message: "Action Deleted Successfully Error",
+      organization: newOrganization,
+    });
   } catch (error) {
     console.log(error);
     return res.status(200).json({ message: "Internal Server Error" });

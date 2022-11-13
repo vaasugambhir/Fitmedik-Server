@@ -16,7 +16,7 @@ const ActionSchema = new Schema({
   },
   view: {
     type: String,
-    enum: ["organization", "department"],
+    enum: ["hospital", "radiology", "neurology"],
     required: true,
   },
   actionType: {

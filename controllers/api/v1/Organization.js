@@ -32,7 +32,7 @@ const updateActionStatus = async (organizationId) => {
       const endYear = parseInt(end.split("/")[2]);
 
       const currDate = date.getDate();
-      const currMonth = date.getMonth();
+      const currMonth = date.getMonth() + 1;
       const currYear = date.getFullYear();
 
       if (currYear > endYear || currMonth > endMonth) {
@@ -173,10 +173,64 @@ export const createAction = async (req, res) => {
     const newOrganization = await Organization.findById(req.body._id)
       .lean()
       .populate({
+        path: "departments",
+        model: Department,
+        populate: {
+          path: "users",
+          model: User,
+          options: { lean: true },
+        },
+      })
+      .populate({
+        path: "users",
+        model: User,
+        options: { lean: true },
+      })
+      .populate({
         path: "actions",
         model: Action,
         options: { lean: true },
       });
+
+    newOrganization.users = newOrganization.users.map((user) => {
+      const dob = user.dob.split("/");
+      const today = new Date();
+      let age = 0;
+
+      age += today.getFullYear() - parseInt(dob[2]);
+
+      if (
+        today.getMonth() - parseInt(dob[1]) !== 0 &&
+        today.getDate() - parseInt(dob[0]) !== 0
+      )
+        age--;
+
+      user.age = age;
+
+      return user;
+    });
+
+    newOrganization.departments.map((department) => {
+      department.users = department.users.map((user) => {
+        const dob = user.dob.split("/");
+        const today = new Date();
+        let age = 0;
+
+        age += today.getFullYear() - parseInt(dob[2]);
+
+        if (
+          today.getMonth() - parseInt(dob[1]) !== 0 &&
+          today.getDate() - parseInt(dob[0]) !== 0
+        )
+          age--;
+
+        user.age = age;
+
+        return user;
+      });
+
+      return department;
+    });
 
     return res.status(200).json({
       message: "action created successfully",
@@ -235,6 +289,46 @@ export const updateAction = async (req, res) => {
         options: { lean: true },
       });
 
+    newOrganization.users = newOrganization.users.map((user) => {
+      const dob = user.dob.split("/");
+      const today = new Date();
+      let age = 0;
+
+      age += today.getFullYear() - parseInt(dob[2]);
+
+      if (
+        today.getMonth() - parseInt(dob[1]) !== 0 &&
+        today.getDate() - parseInt(dob[0]) !== 0
+      )
+        age--;
+
+      user.age = age;
+
+      return user;
+    });
+
+    newOrganization.departments.map((department) => {
+      department.users = department.users.map((user) => {
+        const dob = user.dob.split("/");
+        const today = new Date();
+        let age = 0;
+
+        age += today.getFullYear() - parseInt(dob[2]);
+
+        if (
+          today.getMonth() - parseInt(dob[1]) !== 0 &&
+          today.getDate() - parseInt(dob[0]) !== 0
+        )
+          age--;
+
+        user.age = age;
+
+        return user;
+      });
+
+      return department;
+    });
+
     return res.status(200).json({
       message: "action updated successfully",
       organization: newOrganization,
@@ -277,6 +371,46 @@ export const destroyAction = async (req, res) => {
         model: Action,
         options: { lean: true },
       });
+
+    newOrganization.users = newOrganization.users.map((user) => {
+      const dob = user.dob.split("/");
+      const today = new Date();
+      let age = 0;
+
+      age += today.getFullYear() - parseInt(dob[2]);
+
+      if (
+        today.getMonth() - parseInt(dob[1]) !== 0 &&
+        today.getDate() - parseInt(dob[0]) !== 0
+      )
+        age--;
+
+      user.age = age;
+
+      return user;
+    });
+
+    newOrganization.departments.map((department) => {
+      department.users = department.users.map((user) => {
+        const dob = user.dob.split("/");
+        const today = new Date();
+        let age = 0;
+
+        age += today.getFullYear() - parseInt(dob[2]);
+
+        if (
+          today.getMonth() - parseInt(dob[1]) !== 0 &&
+          today.getDate() - parseInt(dob[0]) !== 0
+        )
+          age--;
+
+        user.age = age;
+
+        return user;
+      });
+
+      return department;
+    });
 
     return res.status(200).json({
       message: "Action Deleted Successfully Error",

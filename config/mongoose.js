@@ -1,10 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 export default async function ConfigureDatabase() {
   await mongoose
     .connect(
-      "mongodb+srv://aaditya:123@fitmedik.ivd9cyo.mongodb.net/test"
+      'mongodb+srv://fitmedik:fitmedik@cluster0.kg9dsge.mongodb.net/?retryWrites=true&w=majority',
+      { useNewUrlParser: true, useUnifiedTopology: true }
     )
-    .then(() => console.log("Connected to the database successfully."))
-    .catch(() => console.log("Error in connecting to the database."));
+    .then(() => console.log('Connected to the database successfully.'))
+    .catch(() => console.log('Error in connecting to the database.'));
 }

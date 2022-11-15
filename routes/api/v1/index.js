@@ -29,7 +29,7 @@ router.post('/user', async (req, res) => {
     return res.status(200).json({ user });
   } catch (error) {
     console.log(error);
-    return res.status(200).json({ message: 'Fuck off' });
+    return res.status(200).json({ message: 'error occured in creating user' });
   }
 });
 

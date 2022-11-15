@@ -33,6 +33,13 @@ const OrganizationSchema = new Schema(
         ref: "user",
       },
     ],
+
+    actions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "action",
+      },
+    ],
   },
 
   {

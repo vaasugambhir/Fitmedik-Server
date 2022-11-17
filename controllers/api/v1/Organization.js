@@ -10,7 +10,7 @@ export const createOrganization = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: "Organization created Successfully", organization });
+      .json({ message:"Organization created Successfully", organization });
   } catch (error) {
     console.log(error.message);
     return res.status(200).json({ message: "Internal Server Error" });

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { apiHome } from "../../../controllers/api/v1/Api_Home.js";
+import {signUp} from '../../../controllers/api/v1/SignUp.js';
 import Organization from "./Organization.js";
 import Department from "./Department.js";
 import User from "../../../models/User.js";
@@ -8,6 +9,7 @@ import DepartmentSchema from "../../../models/Department.js";
 const router = Router();
 
 router.get("/", apiHome);
+router.get("/SignUp",signUp);
 
 router.post("/user", async (req, res) => {
   try {

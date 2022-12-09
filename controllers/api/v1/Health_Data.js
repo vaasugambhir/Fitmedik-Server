@@ -102,12 +102,14 @@ export const workLife = async (req, res) => {
 export const getWeekshealthData = async (req, res) => {
   const currUserId = req.body.currUserId;
   const userDetails = await User.findOne({});
-  const today = new Date();
-  const resp = [];
-  for (let i = 0; i < 7; i++) {
-    const date = new Date(today.setDate(today.getDate() - i)).toDateString();
-    const r = userDetails.health_data.filter(data => data.date === date);
-    resp.push(r[0]);
-  }
-  res.status(200).send(resp);
+  // console.log(userDetails.health_data.slice(0, 7));
+  // const userDetails = await User.findById(currUserId);
+  // const today = new Date();
+  // const resp = [];
+  // for (let i = 0; i < 7; i++) {
+  //   const date = new Date(today.setDate(today.getDate() - i)).toDateString();
+  //   const r = userDetails.health_data.filter(data => data.date === date);
+  //   resp.push(r[0]);
+  // }
+  res.status(200).send(userDetails.health_data.slice(0, 7));
 };

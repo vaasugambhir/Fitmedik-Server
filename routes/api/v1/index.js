@@ -1,19 +1,6 @@
-<<<<<<< HEAD
-import { Router } from "express";
-import { apiHome } from "../../../controllers/api/v1/Api_Home.js";
-import {signUp} from '../../../controllers/api/v1/SignUp.js';
-import Organization from "./Organization.js";
-import Department from "./Department.js";
-import User from "../../../models/User.js";
-import OrganizationSchema from "../../../models/Organization.js";
-import DepartmentSchema from "../../../models/Department.js";
-const router = Router();
-
-router.get("/", apiHome);
-router.get("/SignUp",signUp);
-=======
 import { Router } from 'express';
 import { apiHome } from '../../../controllers/api/v1/Api_Home.js';
+// import { signUp } from '../../../controllers/api/v1/SignUp.js';
 import Organization from './Organization.js';
 import Department from './Department.js';
 import HealthData from './Health_Data.js';
@@ -22,8 +9,12 @@ import OrganizationSchema from '../../../models/Organization.js';
 import DepartmentSchema from '../../../models/Department.js';
 const router = Router();
 
+router.use('/organization', Organization);
+router.use('/department', Department);
+router.use('/health-data', HealthData);
+
+// router.get('/SignUp', signUp);
 router.get('/', apiHome);
->>>>>>> be890f5be820fdd21ba8b23c7a4de3e453c80a8f
 
 router.post('/user', async (req, res) => {
   try {
@@ -47,9 +38,5 @@ router.post('/user', async (req, res) => {
     return res.status(200).json({ message: 'error occured in creating user' });
   }
 });
-
-router.use('/organization', Organization);
-router.use('/department', Department);
-router.use('/health-data', HealthData);
 
 export default router;

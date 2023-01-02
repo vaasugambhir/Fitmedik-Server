@@ -4,11 +4,11 @@ import cors from 'cors';
 import ConfigureDatabase from './config/mongoose.js';
 import routes from './routes/index.js';
 
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors());
 app.use(express.json({ limit: '50MB' }));
 app.use(express.urlencoded({ extended: true }));
 

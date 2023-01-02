@@ -4,7 +4,7 @@ import cors from 'cors';
 import ConfigureDatabase from './config/mongoose.js';
 import routes from './routes/index.js';
 
-if (process.env.NODE_ENV !== 'production') dotenv.config();
+dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 

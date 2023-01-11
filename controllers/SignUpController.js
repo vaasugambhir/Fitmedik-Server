@@ -42,7 +42,7 @@ export const otpTest = async(req,res)=>{
     });
   
    mailTransport().sendMail({
-    from:'fitmedikotpverify@gmail.com',
+    from:'mahathirmohamed791@gmail.com',
     to:req.body.Email,
     subject:"verify your email account",
     html:`<body>

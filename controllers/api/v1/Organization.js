@@ -2,6 +2,7 @@ import Organization from "../../../models/Organization.js";
 import Department from "../../../models/Department.js";
 import User from "../../../models/User.js";
 import Action from "../../../models/Action.js";
+import fs from "fs";
 
 export const createOrganization = async (req, res) => {
   try {
@@ -11,7 +12,7 @@ export const createOrganization = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message:"Organization created Successfully", organization });
+      .json({ message: "Organization created Successfully", organization });
   } catch (error) {
     console.log(error.message);
     return res.status(200).json({ message: "Internal Server Error" });
@@ -24,12 +25,12 @@ const updateActionStatus = async (organizationId) => {
 
     organization.actions.map(async (actionId) => {
       const action = await Action.findById(actionId);
-      const { end } = action.duration;
+      const end = new Date(action.duration.endDate);
       const date = new Date();
 
-      const endDate = parseInt(end.split("/")[0]);
-      const endMonth = parseInt(end.split("/")[1]);
-      const endYear = parseInt(end.split("/")[2]);
+      const endDate = end.getDate();
+      const endMonth = end.getMonth() + 1;
+      const endYear = end.getFullYear();
 
       const currDate = date.getDate();
       const currMonth = date.getMonth() + 1;
@@ -82,6 +83,9 @@ export const getOrganization = async (req, res) => {
         options: { lean: true },
       });
 
+    if (!organization)
+      return res.status(400).json({ message: "Organization does not exist." });
+
     organization.users = organization.users.map((user) => {
       const dob = user.dob.split("/");
       const today = new Date();
@@ -124,27 +128,14 @@ export const getOrganization = async (req, res) => {
 
     let response;
 
+    const { fakeUsers } = JSON.parse(fs.readFileSync("FakeData.json"));
+
     if (organization) {
       response = {
         message: "Organization Found",
         organization: {
           ...organization,
-          averageBurnout: [
-            {
-              month: 3,
-              avgBurnoutScores: [
-                2, 3, 4, 2, 4, 2, 4, 1, 5, 1, 5, 1, 2, 4, 2, 5, 1, 4, 2, 4, 1,
-                2, 4, 3, 3, 5, 3, 2, 1, 2, 5,
-              ].reverse(),
-            },
-            {
-              month: 4,
-              avgBurnoutScores: [
-                2, 3, 4, 2, 4, 2, 4, 1, 5, 1, 5, 1, 2, 4, 2, 5, 1, 4, 2, 4, 1,
-                2, 4, 3, 3, 5, 3, 2, 1, 2,
-              ],
-            },
-          ],
+          fakeUsers,
         },
       };
     } else response = { message: "No Such Organization Exists", organization };
@@ -158,19 +149,20 @@ export const getOrganization = async (req, res) => {
 
 export const createAction = async (req, res) => {
   try {
+
     const organization = await Organization.findById(req.body._id);
 
     if (!organization)
       return res
         .status(200)
-        .json({ message: "no such organization exists", organization });
+        .json({ message: "No such organization exists", organization });
 
     const action = await Action.create(req.body.action);
 
     organization.actions.push(action);
     await organization.save();
 
-    const newOrganization = await Organization.findById(req.body._id)
+    const updatedOrg = await Organization.findById(req.body._id)
       .lean()
       .populate({
         path: "departments",
@@ -192,7 +184,7 @@ export const createAction = async (req, res) => {
         options: { lean: true },
       });
 
-    newOrganization.users = newOrganization.users.map((user) => {
+    updatedOrg.users = updatedOrg.users.map((user) => {
       const dob = user.dob.split("/");
       const today = new Date();
       let age = 0;
@@ -210,7 +202,7 @@ export const createAction = async (req, res) => {
       return user;
     });
 
-    newOrganization.departments.map((department) => {
+    updatedOrg.departments.map((department) => {
       department.users = department.users.map((user) => {
         const dob = user.dob.split("/");
         const today = new Date();
@@ -234,7 +226,7 @@ export const createAction = async (req, res) => {
 
     return res.status(200).json({
       message: "action created successfully",
-      organization: newOrganization,
+      organization: updatedOrg,
     });
   } catch (error) {
     console.log(error.message);
@@ -245,7 +237,7 @@ export const createAction = async (req, res) => {
 export const updateAction = async (req, res) => {
   try {
     const organization = await Organization.findById(
-      req.body.organizationId
+      req.body._id
     ).lean();
 
     let action = await Action.findById(req.body.action._id);
@@ -267,7 +259,7 @@ export const updateAction = async (req, res) => {
 
     await action.save();
 
-    const newOrganization = await Organization.findById(req.body.organizationId)
+    const newOrganization = await Organization.findById(req.body._id)
       .lean()
       .populate({
         path: "departments",
@@ -341,7 +333,7 @@ export const updateAction = async (req, res) => {
 
 export const destroyAction = async (req, res) => {
   try {
-    const organization = await Organization.findById(req.body.organizationId);
+    const organization = await Organization.findById(req.body._id);
     const currAction = await Action.findByIdAndDelete(req.body.actionId);
 
     organization.actions = organization.actions.filter(
@@ -350,7 +342,7 @@ export const destroyAction = async (req, res) => {
 
     await organization.save();
 
-    const newOrganization = await Organization.findById(req.body.organizationId)
+    const newOrganization = await Organization.findById(req.body._id)
       .lean()
       .populate({
         path: "departments",

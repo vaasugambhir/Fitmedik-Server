@@ -4,14 +4,6 @@ import UserDetail from '../models/UserDetails.js';
 import nodemailer from 'nodemailer';
 import otpModel from '../models/Otp.js';
 
-export const mailTransport = () =>  nodemailer.createTransport({
-  host: "smtp.mailtrap.io",
-  port:2525,
-  auth: {
-    user:"76cc7491761f68",
-    pass:"37b91c3a913ccc"
-  }
-});
  
 function generateOTP(){
     let otp = '';
@@ -21,8 +13,70 @@ function generateOTP(){
     }
     return otp;
 }
-export const otpTest = async(req,res)=>{
-  const ExistToken = otpModel.findOne({owner:req.body.Email},(err,docs)=>{
+// export const otpTest = async(req,res)=>{
+//   var transport = nodemailer.createTransport({
+//   service:'gmail',
+//   auth:{
+//     user:"mahathirmohamed791@gmail.com",
+//     pass:"bzfhpojafxjklkpl"
+//   }
+// });
+//   const ExistToken = otpModel.findOne({owner:req.body.Email},(err,docs)=>{
+//     if(err){
+//       return res.status(400).json({msg:err})
+//     }else{
+//       if(docs){
+//          return res.status(200).json({msg:"OTP is already sent to your Email"})
+//       }else{
+//          var newOtp = generateOTP();
+//          const hashedToken =  bcrypt.genSalt(10,function(err,salt){
+//          bcrypt.hash(newOtp,salt,function(err,hash){
+//          const Token = new otpModel({
+//             owner:req.body.Email,
+//             token:hash
+//           });
+//           console.log(hash);
+//           Token.save();
+//         })
+//     });
+//     var mailOptions = {
+//     from:'mahathirmohamed791@gmail.com',
+//     to:'mahathirmohamed129@gmail.com',
+//     subject:'Verify Account',
+//     text:'Hello this otp is Verified'
+//   };
+//    transport.sendMail(mailOptions,function(err,info){
+//      if(err){
+//        console.log(err);
+//      }
+//      if(info){
+//        console.log("Email success"+info.response)
+//        return res.status(200).json({msg:"OTP sent to your email"});
+//       }
+//     })
+//     return res.status(200).json({msg:"Something Went Wrong"})
+  
+//   //  mailTransport().sendMail({
+//   //   from:'mahathirmohamed791@gmail.com',
+//   //   to:'mahathirmohamed791@gmail.com',
+//   //   subject:"verify your email account",
+//   //   html:`<body>
+//   //     <div>
+//   //       <h1>Welcome To Fitmedik Family</h1>
+//   //        <h3>${newOtp}</h3>
+//   //     </div>
+//   //   </body>`
+//   //  });
+  
+   
+//   }
+//     }
+//   })
+  
+// }
+
+export const otpTest = async (req,res)=>{
+     otpModel.findOne({owner:req.body.Email},(err,docs)=>{
     if(err){
       return res.status(400).json({msg:err})
     }else{
@@ -36,29 +90,63 @@ export const otpTest = async(req,res)=>{
             owner:req.body.Email,
             token:hash
           });
-          console.log(hash);
           Token.save();
+          EmailSending(req.body.Email,newOtp,res);
+          console.log(hash);
+          
         })
-    });
-  
-   mailTransport().sendMail({
-    from:'mahathirmohamed791@gmail.com',
-    to:req.body.Email,
-    subject:"verify your email account",
-    html:`<body>
-      <div>
-        <h1>Welcome To Fitmedik Family</h1>
-         <h3>${newOtp}</h3>
-      </div>
-    </body>`
-   });
-  
-   return res.status(200).json({msg:"OTP sent to your email"});
-  }
     }
-  })
+    )
+  }}})
+}
+
+
+const EmailSending = (Email,newOtp,res)=>{
+  var transport = nodemailer.createTransport({
+      service:'gmail',
+      auth:{
+        user:process.env.Email,
+        pass:process.env.pass
+      }
+    });
+    var mailOptions = {
+      from:'mahathirmohamed791@gmail.com',
+      to:Email,
+      subject:'Verify Account',
+      html:`<body>
+       <div>
+         <h1>Welcome To Fitmedik Family</h1>
+          <h3>${newOtp}</h3>
+        </div>
+     </body>`
+  };
+   transport.sendMail(mailOptions,function(err,info){
+     if(err){
+       console.log(err);
+     }
+     if(info){
+       console.log("Email success"+info.response)
+       return res.status(200).json({msg:"OTP sent to your email"});
+      }
+    })
+    return res.status(200).json({msg:"Otp send to your Email Successfully"});
   
 }
+
+export const CheckUser = (req,res)=>{
+  UserDetail.findOne({Email:req.body.Email},(err,docs)=>{
+    if(err){
+      console.log(err)
+    }
+    if(docs){
+      res.status(200).json({msg:"User Found"})
+      console.log(docs);
+    }else{
+      res.status(202).json({msg:"User Not Found"})
+    }
+  })
+}
+
 export const CheckToken = async (req,res)=>{
   const TokenCheck = otpModel.findOne({owner:req.body.Email},(err,docs)=>{
     if(err) { 

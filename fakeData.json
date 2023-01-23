@@ -1,358 +1,476 @@
 {
     "fakeUsers": [
         {
-            "healthData": {
-                "date": "1/15/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/15/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/14/2023",
-                "burnout": 1
-            }
+            "health_data": [
+                {
+                    "date": "1/14/2023",
+                    "burnout": 1
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/13/2023",
-                "burnout": 1
-            }
+            "health_data": [
+                {
+                    "date": "1/13/2023",
+                    "burnout": 1
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/12/2023",
-                "burnout": 1
-            }
+            "health_data": [
+                {
+                    "date": "1/12/2023",
+                    "burnout": 1
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/11/2023",
-                "burnout": 1
-            }
+            "health_data": [
+                {
+                    "date": "1/11/2023",
+                    "burnout": 1
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/10/2023",
-                "burnout": 1
-            }
+            "health_data": [
+                {
+                    "date": "1/10/2023",
+                    "burnout": 1
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/9/2023",
-                "burnout": 1
-            }
+            "health_data": [
+                {
+                    "date": "1/9/2023",
+                    "burnout": 1
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/8/2023",
-                "burnout": 1
-            }
+            "health_data": [
+                {
+                    "date": "1/8/2023",
+                    "burnout": 1
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/7/2023",
-                "burnout": 1
-            }
+            "health_data": [
+                {
+                    "date": "1/7/2023",
+                    "burnout": 1
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/15/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/15/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/14/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/14/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/13/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/13/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/12/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/12/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/11/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/11/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/10/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/10/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/9/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/9/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/8/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/8/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/7/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/7/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/4/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/4/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/15/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/15/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/14/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/14/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/13/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/13/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/12/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/12/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/11/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/11/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/10/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/10/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/9/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/9/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/8/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/8/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/7/2023",
-                "burnout": 2
-            }
+            "health_data": [
+                {
+                    "date": "1/7/2023",
+                    "burnout": 2
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/4/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/4/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/15/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/15/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/14/2023",
-                "burnout": 3
-            }
+            "health_data": [
+                {
+                    "date": "1/14/2023",
+                    "burnout": 3
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/13/2023",
-                "burnout": 3
-            }
+            "health_data": [
+                {
+                    "date": "1/13/2023",
+                    "burnout": 3
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/12/2023",
-                "burnout": 3
-            }
+            "health_data": [
+                {
+                    "date": "1/12/2023",
+                    "burnout": 3
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/11/2023",
-                "burnout": 3
-            }
+            "health_data": [
+                {
+                    "date": "1/11/2023",
+                    "burnout": 3
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/10/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/10/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/9/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/9/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/8/2023",
-                "burnout": 3
-            }
+            "health_data": [
+                {
+                    "date": "1/8/2023",
+                    "burnout": 3
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/7/2023",
-                "burnout": 3
-            }
+            "health_data": [
+                {
+                    "date": "1/7/2023",
+                    "burnout": 3
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/4/2023",
-                "burnout": 3
-            }
+            "health_data": [
+                {
+                    "date": "1/4/2023",
+                    "burnout": 3
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/15/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/15/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/14/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/14/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/13/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/13/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/12/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/12/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/11/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/11/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/10/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/10/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/9/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/9/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/8/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/8/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/7/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/7/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/4/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/4/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/15/2023",
-                "burnout": 4
-            }
+            "health_data": [
+                {
+                    "date": "1/15/2023",
+                    "burnout": 4
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/14/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/14/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/13/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/13/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/12/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/12/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/11/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/11/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/10/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/10/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/9/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/9/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/8/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/8/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/7/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/7/2023",
+                    "burnout": 5
+                }
+            ]
         },
         {
-            "healthData": {
-                "date": "1/4/2023",
-                "burnout": 5
-            }
+            "health_data": [
+                {
+                    "date": "1/4/2023",
+                    "burnout": 5
+                }
+            ]
         }
     ]
 }

@@ -80,17 +80,6 @@ const UserSchema = new Schema(
       },
     ],
 
-    mood: [
-      {
-        moodType: {
-          type: String,
-        },
-        percentage: {
-          type: Number,
-        },
-      },
-    ],
-
     health_data: [
       {
         date: String,
@@ -100,6 +89,15 @@ const UserSchema = new Schema(
           working_with_colleagues: Number,
         },
         sleep_hours: Number,
+        mood: {
+          moodType: {
+            type: String,
+          },
+          percentage: {
+            type: Number,
+          },
+        },
+
         working_hours: Number,
         vulnerability: Number,
         burnout: Number,

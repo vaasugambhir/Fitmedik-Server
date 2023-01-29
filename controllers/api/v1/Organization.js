@@ -3,6 +3,7 @@ import Department from "../../../models/Department.js";
 import User from "../../../models/User.js";
 import Action from "../../../models/Action.js";
 import fs from "fs";
+import fakeUsers from "./fakeData.js";
 
 export const createOrganization = async (req, res) => {
   try {
@@ -60,7 +61,6 @@ const updateActionStatus = async (organizationId) => {
 export const getOrganization = async (req, res) => {
   try {
     updateActionStatus(req.body.organizationId);
-    const { fakeUsers } = JSON.parse(fs.readFileSync("fakeData.json"));
 
     const organization = await Organization.findById(req.body.organizationId)
       .lean()
@@ -149,7 +149,6 @@ export const getOrganization = async (req, res) => {
 
       return user;
     });
-
 
     if (organization) {
       response = {

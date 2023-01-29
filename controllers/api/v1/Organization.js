@@ -60,7 +60,7 @@ const updateActionStatus = async (organizationId) => {
 export const getOrganization = async (req, res) => {
   try {
     updateActionStatus(req.body.organizationId);
-    const { fakeUsers } = JSON.parse(fs.readFileSync("FakeData.json"));
+    const { fakeUsers } = JSON.parse(fs.readFileSync("fakeData.json"));
 
     const organization = await Organization.findById(req.body.organizationId)
       .lean()

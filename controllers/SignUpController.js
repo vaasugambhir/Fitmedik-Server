@@ -79,9 +79,10 @@ export const otpTest = async (req,res)=>{
      otpModel.findOne({owner:req.body.Email},(err,docs)=>{
     if(err){
       return res.status(400).json({msg:err})
-    }else{
-      if(docs){
-         return res.status(200).json({msg:"OTP is already sent to your Email"})
+    }
+    if(docs){
+        console.log(docs);
+         return res.status(200).json({msg:"OTP is already sent to your Email!!"})
       }else{
          var newOtp = generateOTP();
          const hashedToken =  bcrypt.genSalt(10,function(err,salt){
@@ -97,7 +98,7 @@ export const otpTest = async (req,res)=>{
         })
     }
     )
-  }}})
+  }})
 }
 
 

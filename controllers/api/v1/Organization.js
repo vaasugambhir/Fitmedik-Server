@@ -60,6 +60,7 @@ const updateActionStatus = async (organizationId) => {
 export const getOrganization = async (req, res) => {
   try {
     updateActionStatus(req.body.organizationId);
+    const { fakeUsers } = JSON.parse(fs.readFileSync("FakeData.json"));
 
     const organization = await Organization.findById(req.body.organizationId)
       .lean()
@@ -86,25 +87,26 @@ export const getOrganization = async (req, res) => {
     if (!organization)
       return res.status(400).json({ message: "Organization does not exist." });
 
-    organization.users = organization.users.map((user) => {
-      const dob = user.dob.split("/");
-      const today = new Date();
-      let age = 0;
+    // organization.users = organization.users.map((user) => {
+    //   const dob = user.dob.split("/");
+    //   const today = new Date();
+    //   let age = 0;
 
-      age += today.getFullYear() - parseInt(dob[2]);
+    //   age += today.getFullYear() - parseInt(dob[2]);
 
-      if (
-        today.getMonth() - parseInt(dob[1]) !== 0 &&
-        today.getDate() - parseInt(dob[0]) !== 0
-      )
-        age--;
+    //   if (
+    //     today.getMonth() - parseInt(dob[1]) !== 0 &&
+    //     today.getDate() - parseInt(dob[0]) !== 0
+    //   )
+    //     age--;
 
-      user.age = age;
+    //   user.age = age;
 
-      return user;
-    });
+    //   return user;
+    // });
 
     organization.departments.map((department) => {
+      department.users = fakeUsers;
       department.users = department.users.map((user) => {
         const dob = user.dob.split("/");
         const today = new Date();
@@ -128,14 +130,32 @@ export const getOrganization = async (req, res) => {
 
     let response;
 
-    const { fakeUsers } = JSON.parse(fs.readFileSync("FakeData.json"));
+    organization.users = fakeUsers;
+
+    organization.users = organization.users.map((user) => {
+      const dob = user.dob.split("/");
+      const today = new Date();
+      let age = 0;
+
+      age += today.getFullYear() - parseInt(dob[2]);
+
+      if (
+        today.getMonth() - parseInt(dob[1]) !== 0 &&
+        today.getDate() - parseInt(dob[0]) !== 0
+      )
+        age--;
+
+      user.age = age;
+
+      return user;
+    });
+
 
     if (organization) {
       response = {
         message: "Organization Found",
         organization: {
           ...organization,
-          fakeUsers,
         },
       };
     } else response = { message: "No Such Organization Exists", organization };
@@ -149,7 +169,6 @@ export const getOrganization = async (req, res) => {
 
 export const createAction = async (req, res) => {
   try {
-
     const organization = await Organization.findById(req.body._id);
 
     if (!organization)
@@ -236,9 +255,7 @@ export const createAction = async (req, res) => {
 
 export const updateAction = async (req, res) => {
   try {
-    const organization = await Organization.findById(
-      req.body._id
-    ).lean();
+    const organization = await Organization.findById(req.body._id).lean();
 
     let action = await Action.findById(req.body.action._id);
 

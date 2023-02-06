@@ -81,8 +81,19 @@ export const otpTest = async (req,res)=>{
       return res.status(400).json({msg:err})
     }
     if(docs){
-        console.log(docs);
-         return res.status(200).json({msg:"OTP is already sent to your Email!!"})
+      var newOtp = generateOTP();
+         const hashedToken =  bcrypt.genSalt(10,function(err,salt){
+         bcrypt.hash(newOtp,salt,function(err,hash){
+         const Token = new otpModel({
+            owner:req.body.Email,
+            token:hash
+          });
+          Token.save();
+          EmailSending(req.body.Email,newOtp,res);
+          console.log(hash);
+        })
+    }
+    )
       }else{
          var newOtp = generateOTP();
          const hashedToken =  bcrypt.genSalt(10,function(err,salt){
@@ -94,7 +105,6 @@ export const otpTest = async (req,res)=>{
           Token.save();
           EmailSending(req.body.Email,newOtp,res);
           console.log(hash);
-          
         })
     }
     )

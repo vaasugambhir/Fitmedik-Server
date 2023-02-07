@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import DepartmentUser from '../models/DepartmentUser.js';
-import Events from '../models/events.js';
+import Events from '../models/Events.js';
 import Organization from '../models/Organization.js';
 import otpModel from '../models/Otp.js';
 import User from '../models/User.js';

@@ -6,7 +6,7 @@ import HospitalManager from "../models/HospitalManagerModel.js";
 import Department from "../models/Department.js";
 import DepartmentUser from "../models/DepartmentUser.js";
 import TreatmentPartners from "../models/TreatmentPartners.js";
-import Events from "../models/events.js";
+import Events from "../models/Events.js";
 import User from "../models/User.js";
 import asyncHandler from "express-async-handler";
 const {sign,verify} = jwt

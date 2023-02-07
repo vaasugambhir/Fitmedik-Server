@@ -5,15 +5,13 @@ const DepartmentSchema = new Schema(
     name: {
       type: String,
       required: true,
-      lowercase: true,
     },
 
-    parentOrganization: {
+    organization: {
       type: Schema.Types.ObjectId,
       ref: "organization",
       required: true,
     },
-
     users: [
       {
         type: Schema.Types.ObjectId,

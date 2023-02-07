@@ -32,7 +32,7 @@ const UserSchema = new Schema(
 
     ethnicity: {
       type: String,
-      required: true,
+      // required: true,
       enum: ["american native", "asian", "white", "coloured", "other"],
     },
 
@@ -80,6 +80,17 @@ const UserSchema = new Schema(
       },
     ],
 
+    mood: [
+      {
+        moodType: {
+          type: String,
+        },
+        percentage: {
+          type: Number,
+        },
+      },
+    ],
+
     health_data: [
       {
         date: String,
@@ -89,20 +100,14 @@ const UserSchema = new Schema(
           working_with_colleagues: Number,
         },
         sleep_hours: Number,
-        mood: {
-          moodType: {
-            type: String,
-          },
-          percentage: {
-            type: Number,
-          },
-        },
-
         working_hours: Number,
         vulnerability: Number,
         burnout: Number,
       },
     ],
+
+    questionare: [{ type: String }],
+
     lastIn: String,
   },
 

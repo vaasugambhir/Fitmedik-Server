@@ -65,7 +65,7 @@ export const Admin = asyncHandler(async (req,res)=>{
             const user = adminuser[0]
 
             user.OTP = otp
-            user.save()
+            user.save() 
             
             // res.cookie("access-token", accessToken, {
             //     maxAge: 60 * 60 * 24 * 30 * 1000,

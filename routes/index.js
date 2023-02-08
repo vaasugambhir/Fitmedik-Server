@@ -5,7 +5,7 @@ import apiRoutes from './api/index.js';
 import { Admin, AdminOTP} from '../controllers/adminController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import {protect as managerProtect} from '../middleware/authMiddlewareManager.js'
-import { addOrganization,getOrganization,updateOrganization,setupPassword,addPassword,allHospitalManagers,managerLogin,forgetPassword,addManager,verifyOtp,singleHospitalManagers,addDept,allDept,addUser,allUsers,addPartner,updatePartner,allPartners,singlePartner,getOrganizationDetails,addEvent,updateEvent,allEvents,userCount,allQuestionare,getDetailsOrganization,allUsersDept,getAllevents,allPartnersOrg,allTreatmentPartners} from '../controllers/organizationController.js';
+import { addOrganization,getOrganization,updateOrganization,setupPassword,addPassword,allHospitalManagers,managerLogin,forgetPassword,addManager,verifyOtp,singleHospitalManagers,addDept,allDept,addUser,allUsers,addPartner,updatePartner,allPartners,singlePartner,getOrganizationDetails,addEvent,updateEvent,allEvents,userCount,allQuestionare,getDetailsOrganization,allUsersDept,getAllevents,allPartnersOrg,allTreatmentPartners,alldeptusers} from '../controllers/organizationController.js';
 import { storeDailyStepCount,storeDailySleepHours, workLife } from '../controllers/Health_DataController.js';
 import { userProtect } from '../middleware/authMiddlewareUser.js';
 import multer from 'multer'
@@ -78,6 +78,7 @@ router.get('/allUsers',managerProtect,allUsers)
 router.get('/allUsers/:departmentId',managerProtect,allUsersDept)
 router.get('/userCount',managerProtect,userCount)
 router.get('/allQuestionare',managerProtect,allQuestionare)
+router.get('/alldeptusers',alldeptusers)
 
 //treatment partners
 router.post('/addPartner',protect,addPartner)

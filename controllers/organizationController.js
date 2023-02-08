@@ -413,6 +413,15 @@ export const addDept = asyncHandler( async(req,res)=>{
     }
 })
 
+export const alldeptusers = asyncHandler(async(req,res)=>{
+    try {
+        const alldeptu = await DepartmentUser.find({})
+        return res.json({alldeptu})
+    } catch (error) {
+        return res.json({error})
+    }
+})
+
 export const allDept = asyncHandler( async(req,res)=>{
    let organizationid
     try {

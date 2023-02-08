@@ -69,6 +69,11 @@ const UserSchema = new Schema(
       required: true,
     },
 
+    OTP: {
+      type: String,
+      default:"aiencugaie8435478"
+    },
+
     sleepSchedule: [
       {
         start: {

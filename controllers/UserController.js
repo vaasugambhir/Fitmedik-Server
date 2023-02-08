@@ -26,6 +26,32 @@ function generateOTP(){
     return otp;
 }
 
+async function main(email,otp) {
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "vedchourasia08@gmail.com", // generated ethereal user
+      pass: "ylrssgydcmotpizy", // generated ethereal password
+    },
+  });
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+        from:"vedchourasia08@gmail.com",
+        to:email,
+        subject:"OTP for login",
+        text:otp,
+        html: `<b>OTP ${otp}</b>`, // html body
+  });
+
+//   console.log("Message sent: %s", info.messageId);
+
+//   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+}
+
+
 export const otpTest = async(req,res)=>{
   try {
     const ExistToken = otpModel.findOne({owner:req.body.email},(err,docs)=>{
@@ -47,17 +73,21 @@ export const otpTest = async(req,res)=>{
           })
       });
     
-     mailTransport().sendMail({
-      from:'mahathirmohamed791@gmail.com',
-      to:req.body.Email,
-      subject:"verify your email account",
-      html:`<body>
-        <div>
-          <h1>Welcome To Fitmedik Family</h1>
-           <h3>${newOtp}</h3>
-        </div>
-      </body>`
-     });
+    //  mailTransport().sendMail({
+    //   from:'mahathirmohamed791@gmail.com',
+    //   to:req.body.Email,
+    //   subject:"verify your email account",
+    //   html:`<body>
+    //     <div>
+    //       <h1>Welcome To Fitmedik Family</h1>
+    //        <h3>${newOtp}</h3>
+    //     </div>
+    //   </body>`
+    //  });
+
+     main(req.body.email,newOtp).then((res)=>console.log("email sent"))
+            .catch((error)=>console.log("mail not sent"));
+            return res.json({"message":"otp sent"})
     
      return res.status(200).json({msg:"OTP sent to your email"});
     }
@@ -69,6 +99,7 @@ export const otpTest = async(req,res)=>{
   }
   
 }
+
 export const CheckToken = async (req,res)=>{
   try {
     const TokenCheck = otpModel.findOne({owner:req.body.email},(err,docs)=>{
@@ -79,6 +110,7 @@ export const CheckToken = async (req,res)=>{
           return res.status(200).json({msg:"Your OTP is Expired"})
         }
         if(docs){
+          console.log(docs)
           bcrypt.compare(req.body.token,docs.token,(err,result)=>{
             if(err){
               return res.status(400).json({msg:"Something Went Wrong"})
@@ -100,6 +132,7 @@ export const CheckToken = async (req,res)=>{
   }
 }
 
+
 export const SignUp=async(req,res)=>{
   try{
     const email = req.body.email
@@ -113,6 +146,7 @@ export const SignUp=async(req,res)=>{
     const FindUser = await User.findOne({email:req.body.email})
       if(FindUser)
         return res.json({"error":"user already created"})
+        let otp = generateOTP()
       bcrypt.hash(req.body.password, 10).then(function(hash){
       const user = new User({
         email:req.body.email,
@@ -127,7 +161,8 @@ export const SignUp=async(req,res)=>{
         weight:req.body.weight,
         heightInCms:req.body.heightInCms,
         sleepSchedule:req.body.sleepSchedule,
-        department:dept.department
+        department:dept.department,
+        otp:otp
       });
       user.save();
       org.users.push(user)

@@ -8,7 +8,7 @@ const tokenSchema = new Schema({
     },
     createdAt:{
         type:Date,
-        expire:600,
+        // expire:600,
         default:Date.now()
     }
 })

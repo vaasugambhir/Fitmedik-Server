@@ -99,7 +99,6 @@ export const otpTest = async(req,res)=>{
   }
   
 }
-
 export const CheckToken = async (req,res)=>{
   try {
     const TokenCheck = otpModel.findOne({owner:req.body.email},(err,docs)=>{
@@ -110,7 +109,6 @@ export const CheckToken = async (req,res)=>{
           return res.status(200).json({msg:"Your OTP is Expired"})
         }
         if(docs){
-          console.log(docs)
           bcrypt.compare(req.body.token,docs.token,(err,result)=>{
             if(err){
               return res.status(400).json({msg:"Something Went Wrong"})

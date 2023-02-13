@@ -656,7 +656,7 @@ export const getOrganizationDetails = async(req,res)=>{
         const organization = req.user.organization
         const allmanagers = await HospitalManager.find({organization:organization})
         const data = await OrganizationSchema.findById(organization).populate("partners")
-        return res.json({allmanagers,organization})
+        return res.json({allmanagers,data})
     } catch (error) {
         return res.json({"error":error})
     }

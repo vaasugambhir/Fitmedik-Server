@@ -132,7 +132,7 @@ export const updateOrganization = asyncHandler( async (req,res)=>{
 
 export const getOrganization = asyncHandler( async (req,res)=>{
     try {
-        const allOrganizations = await OrganizationSchema.find({}).populate("partners")
+        const allOrganizations = await OrganizationSchema.find({})
         return res.json(allOrganizations)
     } catch (error) {
         return res.json({"error":error})
@@ -335,7 +335,7 @@ export const getDetailsOrganization = asyncHandler(async(req,res)=>{
     try {
         const {organizationId} = req.params
         const allmanagers = await HospitalManager.find({organization:organizationId})
-        const organization = await OrganizationSchema.findById(organizationId)
+        const organization = await OrganizationSchema.findById(organizationId).populate("partners")
         return res.json({allmanagers,organization})
     } catch (error) {
         return res.json({"error":error})
@@ -654,8 +654,9 @@ export const allPartners = asyncHandler( async(req,res)=>{
 export const getOrganizationDetails = async(req,res)=>{
     try {
         const organization = req.user.organization
+        const allmanagers = await HospitalManager.find({organization:organization})
         const data = await OrganizationSchema.findById(organization).populate("partners")
-        return res.send(data)
+        return res.json({allmanagers,organization})
     } catch (error) {
         return res.json({"error":error})
     }

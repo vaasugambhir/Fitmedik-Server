@@ -69,9 +69,9 @@ const OrganizationSchema = new Schema(
       avgIpd: {type:String,default:""},
     },
 
-    documents:[{
+    documents:{
       type:String
-    }],
+    },
 
     subscription_date:{type:Date},
 

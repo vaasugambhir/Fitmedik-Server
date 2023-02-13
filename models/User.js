@@ -111,7 +111,7 @@ const UserSchema = new Schema(
       },
     ],
 
-    questionare: [{ type: String }],
+    questionare: [{date:String , questions: [{ type: String}]}],
 
     lastIn: String,
   },

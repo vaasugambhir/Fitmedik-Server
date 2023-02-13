@@ -99,6 +99,15 @@ export const otpTest = async(req,res)=>{
   }
   
 }
+
+// export const verifyemail = async(req,res)=>{
+//   try {
+    
+//   } catch (error) {
+//     return res.json({error})
+//   }
+// }
+
 export const CheckToken = async (req,res)=>{
   try {
     const TokenCheck = otpModel.findOne({owner:req.body.email},(err,docs)=>{
@@ -286,7 +295,7 @@ export const updateUser = async(req,res)=>{
     if(sleepSchedule)
       user.sleepSchedule = sleepSchedule
     if(questionare)
-      user.questionare = questionare;
+      user.questionare.push(questionare);
     user.save()
     return res.json({user})
   } catch (error) {

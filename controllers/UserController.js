@@ -146,7 +146,7 @@ export const checkOtp = async(req,res)=>{
     {
       return res.json({"status":"success"})
     }
-    return res.json({"error":"incorrect otp"})
+    return res.json({"error":"incorrect otp",userotp,otp})
   } catch (error) {
     return res.json({error})
   }

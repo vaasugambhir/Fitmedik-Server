@@ -116,14 +116,13 @@ export const verifyemail = async(req,res)=>{
     if(user)
     {
       user.token = otp;
-      user.save()
     }
     else
     {
       user = new otpModel({owner:email,token:otp})
-      user.save()
     }
-      
+    user.save()
+    
       main(req.body.email,otp).then((res)=>console.log("email sent"))
             .catch((error)=>console.log("mail not sent"));
         return res.json({"message":"otp sent",user,otp})

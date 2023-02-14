@@ -220,7 +220,9 @@ export const SignUp=async(req,res)=>{
       dept.user = user
       dept.save()
       dept.registered = true 
-      return res.status(200).json({user})
+      const Token = jwt.sign({data:user},process.env.JWT_SECRET_KEY);
+      return res.status(200).json({"token": Token})
+      // return res.status(200).json({user})
     }).catch((error)=>{return res.send(error)})
   }catch(err){
     return res.json({"error":err})

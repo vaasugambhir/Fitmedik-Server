@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Home } from '../controllers/Home_Controller.js';
-import { SignUp, Login, message,otpTest,CheckToken,allAppUsers,allEventsUser,uploadjournal,allDetails,updateUser } from '../controllers/UserController.js';
+import { SignUp, Login, message,otpTest,checkOtp,allAppUsers,allEventsUser,uploadjournal,allDetails,updateUser,verifyemail } from '../controllers/UserController.js';
 import apiRoutes from './api/index.js';
 import { Admin, AdminOTP} from '../controllers/adminController.js';
 import { protect } from '../middleware/authMiddleware.js';
@@ -65,8 +65,9 @@ router.get('/allEventsUser',userProtect,allEventsUser)
 router.get('/allDetails',userProtect,allDetails)
 router.post('/updateUser',userProtect,updateUser)
 // router.post("/uploadjournal",[userProtect,upload],uploadjournal)
+router.post("/verifyemail",verifyemail);
+router.post("/checkOtp",checkOtp)
 router.post("/otp",otpTest);
-router.post("/checkOtp",CheckToken)
 
 
 

@@ -100,13 +100,56 @@ export const otpTest = async(req,res)=>{
   
 }
 
-// export const verifyemail = async(req,res)=>{
-//   try {
-    
-//   } catch (error) {
-//     return res.json({error})
-//   }
-// }
+export const verifyemail = async(req,res)=>{
+  try {
+    const email = req.body.email
+    // const dept = await DepartmentUser.findOne({email})
+    // if(dept===null)
+    // {
+    //   return res.json({"error":"invalid user to signup"})
+    // }
+    // const FindUser = await User.findOne({email:req.body.email})
+    //   if(FindUser)
+    //     return res.json({"error":"user already created"})
+    let user = await otpModel.findOne({owner:email})
+    let otp = generateOTP()
+    if(user)
+    {
+      user.token = otp;
+      user.save()
+    }
+    else
+    {
+      user = new otpModel({owner:email,token:otp})
+      user.save()
+    }
+      
+      main(req.body.email,otp).then((res)=>console.log("email sent"))
+            .catch((error)=>console.log("mail not sent"));
+        return res.json({"message":"otp sent",user})
+
+  } catch (error) {
+    return res.json({error})
+  }
+}
+
+export const checkOtp = async(req,res)=>{
+  try {
+    const email = req.body.email
+    const otp = req.body.otp
+
+    const userotp = await otpModel.findOne({owner:email})
+    if(!userotp)
+      return res.json({"error":"user not exists or otp expired"})
+    if(userotp.token===otp)
+    {
+      return res.json({"status":"success"})
+    }
+    return res.json({"error":"incorrect otp"})
+  } catch (error) {
+    return res.json({error})
+  }
+}
 
 export const CheckToken = async (req,res)=>{
   try {

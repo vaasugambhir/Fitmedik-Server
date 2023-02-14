@@ -126,7 +126,7 @@ export const verifyemail = async(req,res)=>{
       
       main(req.body.email,otp).then((res)=>console.log("email sent"))
             .catch((error)=>console.log("mail not sent"));
-        return res.json({"message":"otp sent",user})
+        return res.json({"message":"otp sent",user,otp})
 
   } catch (error) {
     return res.json({error})

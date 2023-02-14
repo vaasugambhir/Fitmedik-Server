@@ -111,17 +111,19 @@ export const updateOrganization = asyncHandler( async (req,res)=>{
             organization.actions = actions
         if(subscription_date)
             organization.subscription_date = subscription_date
-        const upd = false
-        for(let i = 0;i<organization.partners.length;i++)
-        {
-            if(organization.partners[i].partnersid===partners.partnersid)
-            {
-                organization.partners[i] = partners
-                upd = true
-            }
-        }
-        if(!upd)
-        organization.partners.push(partners)
+        if(partners)
+            organization.partners = partners
+        // let upd = false
+        // for(let i = 0;i<organization.partners.length;i++)
+        // {
+        //     if(organization.partners[i].partnersid===partners.partnersid)
+        //     {
+        //         organization.partners[i] = partners
+        //         upd = true
+        //     }
+        // }
+        // if(!upd)
+        // organization.partners.push(partners)
         organization.save()
         return res.json({"status":"successfully updated",organization})
     } catch (error) {

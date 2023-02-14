@@ -112,24 +112,21 @@ export const verifyemail = async(req,res)=>{
     //   if(FindUser)
     //     return res.json({"error":"user already created"})
     let user = await otpModel.findOne({owner:email})
+    let otp = generateOTP()
     if(user)
     {
-      main(req.body.email,user.token).then((res)=>console.log("email sent"))
-      .catch((error)=>console.log("mail not sent"));
-      return res.json({"message":"otp sent",user})
-      // user.token = otp;
+      user.token = otp;
+      user.save()
     }
     else
     {
-      let otp = generateOTP()
       user = new otpModel({owner:email,token:otp})
       user.save()
-      main(req.body.email,otp).then((res)=>console.log("email sent"))
-      .catch((error)=>console.log("mail not sent"));
-      return res.json({"message":"otp sent",user})
     }
-    
       
+      main(req.body.email,otp).then((res)=>console.log("email sent"))
+            .catch((error)=>console.log("mail not sent"));
+        return res.json({"message":"otp sent",user})
 
   } catch (error) {
     return res.json({error})

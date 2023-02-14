@@ -141,7 +141,7 @@ export const checkOtp = async(req,res)=>{
     const userotp = await otpModel.findOne({owner:email})
     if(!userotp)
       return res.json({"error":"user not exists or otp expired"})
-    if(userotp.token===otp)
+    if(userotp.token==otp)
     {
       return res.json({"status":"success"})
     }

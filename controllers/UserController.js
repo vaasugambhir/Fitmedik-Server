@@ -285,7 +285,7 @@ export const allEventsUser = async(req,res)=>{
     let alleven = []
     for(let i = 0;i<partners.length;i++)
     {
-      const event = await Events.find({partner:partners[i]})
+      const event = await Events.find({partner:partners[i]}).populate("partner")
       alleven.push(event)
     }
     return res.json({alleven})

@@ -280,8 +280,15 @@ export const allAppUsers = async (req,res)=>{
 export const allEventsUser = async(req,res)=>{
   try {
     const organization = req.user.parentOrganization
-    const events = await Events.find({organization})
-    return res.json({events})
+    const org = await OrganizationSchema.findById(organization)
+    const partners = org.partners
+    let alleven = []
+    for(let i = 0;i<partners.length;i++)
+    {
+      const event = await Events.find({partner:partners[i]})
+      alleven.push(event)
+    }
+    return res.json({alleven})
   } catch (error) {
     return res.json({"error":error})
   }

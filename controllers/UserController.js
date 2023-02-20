@@ -306,7 +306,36 @@ export const allDetails = async(req,res)=>{
   try {
     const id = req.user._id;
     const userDetails = await User.findById(id)
-    return res.json({userDetails})
+    let healthdata = userDetails.health_data
+    let len = healthdata.length
+    if(len>=7)
+    {
+      return res.json({userDetails})
+    }
+    else
+    {
+      let rem = 7 - len;
+      for(let i = 1;i<=rem;i++)
+      {
+        let todaysDate = new Date();
+        // todaysDate.setDate(todaysDate.getDate() - i);
+        // var yesterday = new Date(todaysDate.getDate() - Number(i)).toDateString();
+        let foundObj = {
+          date: "-1",
+          step_count: 0,
+          interaction: {
+            working_alone: 0,
+            working_with_colleagues: 0
+          },
+          sleep_hours: 0,
+          working_hours: 0,
+          vulnerability: 0
+        }
+        userDetails.health_data.push(foundObj)
+      }
+      userDetails.save()
+      return res.json({userDetails})
+    }
   } catch (error) {
     return res.json({"error":error})
   }

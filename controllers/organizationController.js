@@ -6,6 +6,7 @@ import HospitalManager from "../models/HospitalManagerModel.js";
 import Department from "../models/Department.js";
 import DepartmentUser from "../models/DepartmentUser.js";
 import TreatmentPartners from "../models/TreatmentPartners.js";
+import QuestionaireModel from "../models/Questionare.js";
 import Events from "../models/Events.js";
 import User from "../models/User.js";
 import asyncHandler from "express-async-handler";
@@ -141,6 +142,17 @@ export const getOrganization = asyncHandler( async (req,res)=>{
     }
 })
 
+
+export const addQuestionaire = asyncHandler(async(req,res)=>{
+    try {
+        const {question} = req.body
+        let newquestion = new QuestionaireModel({question})
+        newquestion.save()
+        return res.json({question})
+    } catch (error) {
+        return res.json({error})
+    }
+})
 
 export const addManager = asyncHandler( async(req,res)=>{
     const {name,email,phone,title,organization} = req.body;

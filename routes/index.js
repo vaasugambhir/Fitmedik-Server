@@ -5,7 +5,7 @@ import apiRoutes from './api/index.js';
 import { Admin, AdminOTP} from '../controllers/adminController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import {protect as managerProtect} from '../middleware/authMiddlewareManager.js'
-import { addOrganization,getOrganization,updateOrganization,setupPassword,addPassword,allHospitalManagers,managerLogin,forgetPassword,addManager,verifyOtp,singleHospitalManagers,addDept,allDept,addUser,allUsers,addPartner,updatePartner,allPartners,singlePartner,getOrganizationDetails,addEvent,updateEvent,allEvents,userCount,allQuestionare,getDetailsOrganization,allUsersDept,getAllevents,allPartnersOrg,allTreatmentPartners,alldeptusers} from '../controllers/organizationController.js';
+import { addQuestionaire,addOrganization,getOrganization,updateOrganization,setupPassword,addPassword,allHospitalManagers,managerLogin,forgetPassword,addManager,verifyOtp,singleHospitalManagers,addDept,allDept,addUser,allUsers,addPartner,updatePartner,allPartners,singlePartner,getOrganizationDetails,addEvent,updateEvent,allEvents,userCount,allQuestionare,getDetailsOrganization,allUsersDept,getAllevents,allPartnersOrg,allTreatmentPartners,alldeptusers} from '../controllers/organizationController.js';
 import { storeDailyStepCount,storeDailySleepHours, workLife } from '../controllers/Health_DataController.js';
 import { userProtect } from '../middleware/authMiddlewareUser.js';
 import multer from 'multer'
@@ -38,6 +38,7 @@ router.post('/addEvent',protect,addEvent)
 router.post('/updateEvent',protect,updateEvent)
 router.get('/allEvents/:id',protect,allEvents)
 router.get('/allTreatmentPartners',protect,allTreatmentPartners)
+router.post('/addQuestionaire',protect,addQuestionaire)
 
 //hospital managers
 router.get('/allHospitalManagers',allHospitalManagers)

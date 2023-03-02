@@ -154,6 +154,23 @@ export const addQuestionaire = asyncHandler(async(req,res)=>{
     }
 })
 
+export const getQuestions= asyncHandler(async(req,res)=>{
+    try {
+        const no = req.params.no
+        const {organizationId} = req.params
+        const users = await User.find({parentOrganization:organizationId})
+        let allQuestions = []
+        for(let i = 0;i<users.length;i++)
+        {
+            let question = users[i].questionare.slice(-no);
+            allQuestions.push(question)
+        }
+        return res.json({allQuestions})
+    } catch (error) {
+        return res.json({error})
+    }
+})
+
 export const addManager = asyncHandler( async(req,res)=>{
     const {name,email,phone,title,organization} = req.body;
     let newmanager

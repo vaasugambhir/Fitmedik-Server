@@ -111,8 +111,8 @@ const UserSchema = new Schema(
       },
     ],
 
-    questionare: [{date:String , questions: [{type: Schema.Types.ObjectId,
-        ref: "user"}]}],
+    questionare: [{date:String , questions: [{question:{type: Schema.Types.ObjectId,
+        ref: "user"},value:{type:Number}}]}],
 
     lastIn: String,
   },

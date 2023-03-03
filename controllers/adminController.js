@@ -56,9 +56,12 @@ export const Admin = asyncHandler(async (req,res)=>{
         // newAdmin.save()
         const {email,password} = req.body;
         const defEmail = process.env.EMAIL;
+        const defEmail1 = process.env.EMAIL1;
+        const defEmail2 = process.env.EMAIL2;
+        const defEmail3 = process.env.EMAIL3;
         const defPassword = process.env.PASSWORD
         
-        if(defEmail===email && defPassword===password)
+        if((defEmail===email || defEmail1===email || defEmail2===email || defEmail3===email) && defPassword===password)
         {
             let otp = generateOTP()
             const adminuser = await AdminModel.find({name:"adminUser"})
